@@ -17,11 +17,11 @@ export default function HomePage() {
 
   const disabled = url === "";
 
-  const Toast = (title: string) => toast({title, duration: 3000});
+  const Toast = (title: string) => toast({title, duration: 3000, className: "border-muted"});
 
   const handleClickTake = (url?: string) => {
     if (!url) {
-      Toast("Please enter a link");
+      Toast("❌ Please enter a link");
 
       return;
     }
@@ -29,7 +29,7 @@ export default function HomePage() {
     const link = parseGoogleDriveLink(url);
 
     if (!link) {
-      Toast("Invalid link");
+      Toast("❌ Invalid link");
 
       return;
     }
@@ -64,7 +64,10 @@ export default function HomePage() {
       </aside>
       <section className="space-y-4">
         <Input ref={inputRef} placeholder="Your google drive url" />
-        <Button className={cn("w-full")} onClick={() => handleClickTake(inputRef.current?.value)}>
+        <Button
+          className={cn("w-full bg-blue-600/70 text-foreground hover:bg-blue-600")}
+          onClick={() => handleClickTake(inputRef.current?.value)}
+        >
           Take your image link 📸
         </Button>
       </section>
